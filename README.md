@@ -4,7 +4,7 @@ A minimal, clean FreeRTOS starting point for the **STM32F411RE** (Cortex-M4F), c
  
 ## Features
  
-- FreeRTOS **V10.3.1** (kernel files taken from ST's STM32Cube middleware), `ARM_CM4F` port, `heap_4` memory scheme
+- FreeRTOS **V10.3.1** (kernel files taken from ST's STM32Cube middleware) and `ARM_CM4F` port
 - Hardware FPU support (lazy stacking handled by the port)
 - Cortex-M interrupt priority setup done correctly (4 preempt bits, `NVIC_SetPriorityGrouping(3)`)
 - Newlib re-entrancy enabled (`configUSE_NEWLIB_REENTRANT`), so `printf`, `errno` and friends are per-task
@@ -23,10 +23,9 @@ A minimal, clean FreeRTOS starting point for the **STM32F411RE** (Cortex-M4F), c
  
 | Task | Period | What it does |
 |---|---|---|
-| `Task1` | 1000 ms (`vTaskDelayUntil`, no drift) | Toggles the LED, increments `task1_counter` |
+| `Task1` | 1000 ms (`vTaskDelayUntil`) | Toggles the LED, increments `task1_counter` |
 | `Task2` | 500 ms (`vTaskDelay`) | Increments `task2_counter`, runs a float multiplication to exercise the FPU |
  
-Both tasks use priority 1 and a 256-word stack. Watch `task1_counter`, `task2_counter` and `fpu_test` in the debugger's live expressions to verify the scheduler, tick and FPU context switching.
  
 ## Project files
  
